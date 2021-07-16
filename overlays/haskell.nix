@@ -127,7 +127,7 @@ final: prev: {
                 You may need to update haskell.nix to one that includes a newer stackage.nix.
                 '');
                 # The compiler referenced in the stack config
-                compiler = (stack-pkgs.extras hackage).compiler or (pkg-def hackage).compiler;
+                compiler = if args ? compiler-nix-name then args.compiler-nix-name else ((stack-pkgs.extras hackage).compiler or (pkg-def hackage).compiler);
                 patchesModule = ghcHackagePatches.${compiler.nix-name} or {};
                 # Remove fake packages generated from stack keywords used in ghc-options
                 removeStackSpecial = module: if builtins.typeOf module == "set"
