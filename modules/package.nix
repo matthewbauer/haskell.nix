@@ -325,10 +325,12 @@ in {
     let allComps = haskellLib.getAllComponents config;
     in lib.mkMerge (
       builtins.map (c:
+        # Make any options hidden from the manual
+        let c' = lib.mapAttrs (v: if (v._type or null) == "option" then v // { visible = false; } else v);
         # Exclude attributes that are likely to have conflicting definitions
         # (a common use case for `all` is in `shellFor` and it only has an
         # install phase).
-        builtins.removeAttrs c ["preCheck" "postCheck" "keepSource"]
+        in builtins.removeAttrs c' ["preCheck" "postCheck" "keepSource"]
       ) allComps
     ) // {
       # If any one of the components needs us to keep the source
