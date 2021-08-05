@@ -37,7 +37,7 @@ with types;
     };
     caller = mkOption {
       type = str;
-      default = "callCabalProjectToNix";
+      default = "callStackProjectToNix";
       description = "Name of the calling function for better warning messages";
     };
     nix-tools = mkOption {

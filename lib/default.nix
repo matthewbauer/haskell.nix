@@ -345,7 +345,7 @@ in {
         ];
       }).config;
 
-  # Converts from a `compoent.depends` value to a library derivation.
+  # Converts from a `component.depends` value to a library derivation.
   # In the case of sublibs the `depends` value should already be the derivation.
   dependToLib = d: d.components.library or d;
 }

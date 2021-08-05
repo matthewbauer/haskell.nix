@@ -19,7 +19,7 @@ that will impact users.
   To specify ghcOptions for all packages:
     ghcOptions = ["someGHCoption"];
   For a single component:
-    packages.x.compoents.library.ghcOptions = ["someGHCoption"];
+    packages.x.components.library.ghcOptions = ["someGHCoption"];
 
 ## Feb 8, 2021
 * Removed older versions of haskell-language-server from custom-tools
