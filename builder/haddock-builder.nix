@@ -20,6 +20,8 @@
 , needsProfiling
 , componentDrv
 , configFiles # component config files
+
+, hardeningDisable ? component.hardeningDisable
 }:
 
 let
@@ -152,5 +154,8 @@ let
   }
   // haskellLib.optionalHooks {
     inherit preHaddock postHaddock;
+  }
+  // lib.optionalAttrs (hardeningDisable != [] || stdenv.hostPlatform.isMusl) {
+    hardeningDisable = hardeningDisable ++ lib.optional stdenv.hostPlatform.isMusl "pie";
   });
 in drv
